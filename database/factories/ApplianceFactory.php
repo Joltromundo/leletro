@@ -22,16 +22,16 @@ class ApplianceFactory extends Factory
         $voltage = fake()->randomElement(['110v', '220v']);
 
         return [
-            'name' => $category . $brand . $color . $voltage,
-            'description' => fake()->paragraphs(2),
+            'name' => $category . ' ' . $brand . ' - ' . $color . ' ' . $voltage,
+            'description' => fake()->paragraph(2),
             'category' => $category,
             'brand' => $brand,
             'color' => $color,
             'voltage' => $voltage,
             'weight' => fake()->randomFloat(2, 1, 900) . fake()->randomElement(['g', 'kg']),
-            'height' => fake()->randomNumber(5, false),
-            'width' => fake()->randomNumber(5, false),
-            'depth' => fake()->randomNumber(5, false)
+            'height' => fake()->randomFloat(2, 1, 200),
+            'width' => fake()->randomFloat(2, 1, 200),
+            'depth' => fake()->randomFloat(2, 1, 200)
         ];
     }
 }

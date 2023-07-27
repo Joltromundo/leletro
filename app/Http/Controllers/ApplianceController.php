@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appliances;
 use Illuminate\Http\Request;
 
 class ApplianceController extends Controller
@@ -11,7 +12,9 @@ class ApplianceController extends Controller
      */
     public function index()
     {
-        dd('oi!');
+        $appliances = Appliance::all();
+        
+        return response()->json($appliances);
     }
 
     /**
