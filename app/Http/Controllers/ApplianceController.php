@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreApplianceRequest;
 use App\Repositories\Contracts\ApplianceRepositoryInterface;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 
 class ApplianceController extends Controller
 {
@@ -29,7 +28,7 @@ class ApplianceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request, ApplianceRepositoryInterface $model)
+    public function store(StoreApplianceRequest $request, ApplianceRepositoryInterface $model)
     {
         $model->create($request->all());
 
@@ -57,7 +56,7 @@ class ApplianceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id, ApplianceRepositoryInterface $model)
+    public function update(StoreApplianceRequest $request, string $id, ApplianceRepositoryInterface $model)
     {
         $model->update($request, $id);
 
