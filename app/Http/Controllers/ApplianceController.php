@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Appliances;
+use App\Repositories\Contracts\ApplianceRepositoryInterface;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
 class ApplianceController extends Controller
@@ -10,9 +11,9 @@ class ApplianceController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(ApplianceRepositoryInterface $model)
     {
-        $appliances = Appliance::all();
+        $appliances = $model->all();
         
         return response()->json($appliances);
     }
@@ -28,17 +29,21 @@ class ApplianceController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, ApplianceRepositoryInterface $model)
     {
-        //
+        $model->create($request->all());
+
+        return response("Appliance has been successfully created");
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(ApplianceRepositoryInterface $model, string $id)
     {
-        //
+        $appliance = $model->find($id);
+
+        return response()->json($appliance);
     }
 
     /**
@@ -52,16 +57,20 @@ class ApplianceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, string $id, ApplianceRepositoryInterface $model)
     {
-        //
+        $model->update($request, $id);
+
+        return response("Appliance has been successfully updated");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id, ApplianceRepositoryInterface $model)
     {
-        //
+        $model->delete($id);
+
+        return response("Appliance has been successfully deleted");
     }
 }
