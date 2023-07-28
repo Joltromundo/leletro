@@ -3,34 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreApplianceRequest;
-use App\Repositories\Contracts\ApplianceRepositoryInterface;
+use App\Services\ApplianceService;
 
 class ApplianceController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(ApplianceRepositoryInterface $model)
+
+    public function __construct(
+        protected ApplianceService $service
+    ){}
+
+    public function index(ApplianceService $service)
     {
-        $appliances = $model->all();
+        $appliances = $service->all();
         
         return response()->json($appliances);
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreApplianceRequest $request, ApplianceRepositoryInterface $model)
+    public function store(StoreApplianceRequest $request, ApplianceService $service)
     {
-        $model->create($request->all());
+        $service->create($request->all());
 
         return response("Appliance has been successfully created");
     }
@@ -38,27 +35,19 @@ class ApplianceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ApplianceRepositoryInterface $model, string $id)
+    public function show(ApplianceService $service, string $id)
     {
-        $appliance = $model->find($id);
+        $appliance = $service->find($id);
 
         return response()->json($appliance);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
-    public function update(StoreApplianceRequest $request, string $id, ApplianceRepositoryInterface $model)
+    public function update(StoreApplianceRequest $request, string $id, ApplianceService $service)
     {
-        $model->update($request, $id);
+        $service->update($request, $id);
 
         return response("Appliance has been successfully updated");
     }
@@ -66,9 +55,9 @@ class ApplianceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id, ApplianceRepositoryInterface $model)
+    public function destroy(string $id, ApplianceService $service)
     {
-        $model->delete($id);
+        $service->delete($id);
 
         return response("Appliance has been successfully deleted");
     }
