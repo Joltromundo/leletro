@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  import FormView from '../../components/appliance/Form.vue'
+  import FormCreate from '../../components/appliance/FormCreate.vue'
 </script>
 
 <template>
@@ -9,6 +9,6 @@
       <small class="ml-1 font-semibold text-gray-400">a new Appliance!</small>
     </h1><br/>
 
-    <FormView />
+    <FormCreate />
   </div>
 </template>
