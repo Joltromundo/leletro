@@ -1,16 +1,11 @@
+<script setup lang="ts">
+  import FormView from '../../components/appliance/Form.vue'
+</script>
+
 <template>
-    <div class="UPDATE ">
-      <h1>This is an UPDATE {{ this.$route.params.id }} page</h1>
-    </div>
-  </template>
-  
-  <style>
-  @media (min-width: 1024px) {
-    .about {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-    }
-  }
-  </style>
-  
+  <div class="update m-7">
+    <h1>This is an CREATE {{ this.$route.params.id }} page</h1>
+
+    <FormView />
+  </div>
+</template>
