@@ -1,66 +1,67 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<h1>Projeto em Laravel - Setup e Rotas</h1>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<p>Este projeto em Laravel é uma API para gerenciar registros de eletrodomésticos, e também possui um painel em Vue.js para facilitar a interação com a API. Neste arquivo README.md, você encontrará informações sobre como configurar o projeto, rodar as migrações e seeders, e como executar o projeto localmente ou usando o Docker.</p>
 
-## About Laravel
+<h2>Setup do Projeto</h2>
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<p>Antes de executar o projeto, siga os seguintes passos de configuração:</p>
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+<ol>
+    <li>Clone este repositório para o seu ambiente local:</li>
+    <pre><code>git clone &lt;url-do-repositorio&gt;</code></pre>
+    <pre><code>cd &lt;nome-do-repositorio&gt;</code></pre>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+    <li>Edite ou crie o arquivo .env com as configurações do banco de dados:</li>
+    <pre><code>cp .env.example .env</code></pre>
+    <p>No arquivo .env, configure as seguintes variáveis de ambiente com os dados do seu banco de dados:</p>
+    <pre><code>
+DB_CONNECTION=mysql
+DB_HOST=seu_host
+DB_PORT=porta_do_banco
+DB_DATABASE=nome_do_banco
+DB_USERNAME=seu_usuario
+DB_PASSWORD=sua_senha
+    </code></pre>
 
-## Learning Laravel
+    <li>Execute as migrações e seeders para preparar o banco de dados:</li>
+    <pre><code>php artisan migrate --seed</code></pre>
+    <p>Esse comando irá criar as tabelas necessárias no banco de dados e populará com alguns dados iniciais para a aplicação.</p>
+</ol>
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+<h2>Executando o Projeto</h2>
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+<p>Você tem duas opções para executar o projeto: localmente ou usando Docker.</p>
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+<h3>Localmente</h3>
 
-## Laravel Sponsors
+<p>Para executar o projeto localmente, você precisará do PHP e do Composer instalados em seu sistema. Após concluir o setup do projeto, execute o seguinte comando para iniciar o servidor:</p>
+<pre><code>php artisan serve</code></pre>
+<p>O servidor estará disponível em <a href="http://localhost:8000">http://localhost:8000</a>.</p>
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+<h3>Docker</h3>
 
-### Premium Partners
+<p>Se você preferir executar o projeto usando Docker, certifique-se de ter o Docker e o Docker Compose instalados em seu sistema. Após o setup do projeto, execute o seguinte comando para construir e executar os containers:</p>
+<pre><code>docker-compose up -d --build</code></pre>
+<p>O servidor estará disponível em <a href="http://localhost:8000">http://localhost:8000</a>.</p>
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+<h2>Apresentação das Rotas</h2>
 
-## Contributing
+<p>A API possui as seguintes rotas disponíveis:</p>
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+<ul>
+    <li>GET /api/appliances: Lista todos os eletrodomésticos.</li>
+    <li>POST /api/appliances: Cria um novo registro de eletrodoméstico.</li>
+    <li>GET /api/appliances/{id}: Obtém um registro específico de eletrodoméstico pelo ID.</li>
+    <li>PUT /api/appliances/{id}: Edita um registro existente de eletrodoméstico pelo ID.</li>
+    <li>DELETE /api/appliances/{id}: Deleta (softDeletes) um registro existente de eletrodoméstico pelo ID.</li>
+</ul>
 
-## Code of Conduct
+<h2>Painel em Vue.js</h2>
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+<p>O projeto também inclui um painel em Vue.js localizado na branch "panel". O painel é uma interface amigável que consome a API para gerenciar os registros de eletrodomésticos. Para acessar o painel, certifique-se de mudar para a branch "panel" do repositório.</p>
+<pre><code>git checkout panel</code></pre>
 
-## Security Vulnerabilities
+<p>O painel oferece funcionalidades para listar, criar, editar e excluir registros de eletrodomésticos de forma intuitiva.</p>
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+<p>Divirta-se explorando o projeto Laravel e Vue.js!</p>
+<p>Agora que o setup foi concluído e você conhece as rotas disponíveis e o painel Vue.js, aproveite para explorar e gerenciar os registros de eletrodomésticos de forma eficiente e prática. Se tiver alguma dúvida ou precisar de ajuda, sinta-se à vontade para entrar em contato com a equipe responsável pelo projeto. Boa jornada!</p>
